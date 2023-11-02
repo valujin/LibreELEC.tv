@@ -19,6 +19,9 @@ export LC_ALL=C
 ROOT="${PWD}"
 DISTRO_DIR="${ROOT}/distributions"
 PROJECT_DIR="${ROOT}/projects"
+if [ -d "/tmp/LEbuild" ]; then
+BUILD_DIR=/tmp/LEbuild
+fi
 
 # determines DISTRO, if not forced by user
 DISTRO="${DISTRO:-LibreELEC}"
