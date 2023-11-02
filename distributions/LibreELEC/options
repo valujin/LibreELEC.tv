@@ -30,13 +30,13 @@
   LTO_SUPPORT="yes"
 
 # GOLD (Google Linker) support
-  GOLD_SUPPORT="yes"
+  GOLD_SUPPORT="no"
 
 # MOLD (Modern Linker) support
-  MOLD_SUPPORT="no"
+  MOLD_SUPPORT="yes"
 
 # default linker (bfd / gold / mold)
-  DEFAULT_LINKER="gold"
+  DEFAULT_LINKER="mold"
 
 # HARDENING (security relevant linker and compiler flags) support
   HARDENING_SUPPORT="no"
@@ -64,7 +64,7 @@
 # for a list of additional drivers see packages/linux-drivers
 # Space separated list is supported,
 # e.g. ADDITIONAL_DRIVERS="DRIVER1 DRIVER2"
-  ADDITIONAL_DRIVERS="RTL8192DU RTL8812AU"
+  ADDITIONAL_DRIVERS=""
 
 # Default size of system partition, in MB, eg. 512
   SYSTEM_SIZE=512
@@ -143,13 +143,13 @@
   KODI_MYSQL_SUPPORT="mariadb"
 
 # build xbmc with optical drive support (yes / no)
-  KODI_OPTICAL_SUPPORT="yes"
+  KODI_OPTICAL_SUPPORT="no"
 
 # build with AirPlay support (stream videos from iDevices to KODI) (yes / no)
-  KODI_AIRPLAY_SUPPORT="yes"
+  KODI_AIRPLAY_SUPPORT="no"
 
 # build with AirTunes support (stream music from iDevices to KODI) (yes / no)
-  KODI_AIRTUNES_SUPPORT="yes"
+  KODI_AIRTUNES_SUPPORT="no"
 
 # build with libnfs support (mounting nfs shares with KODI) (yes / no)
   KODI_NFS_SUPPORT="yes"
@@ -242,7 +242,7 @@
   JOYSTICK_SUPPORT="yes"
 
 # build and install CEC adapter support (yes / no)
-  CEC_SUPPORT="yes"
+  CEC_SUPPORT="no"
 
 # build and install CEC framework support (yes / no)
   CEC_FRAMEWORK_SUPPORT="no"

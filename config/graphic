@@ -98,6 +98,14 @@ get_graphicdrivers() {
     VAAPI_SUPPORT="yes"
   fi
 
+  if listcontains "${GRAPHIC_DRIVERS}" "nouveau"; then
+    GALLIUM_DRIVERS+=" nouveau"
+    XORG_DRIVERS+=" nouveau"
+    LLVM_SUPPORT="yes"
+    COMPOSITE_SUPPORT="yes"
+    VDPAU_SUPPORT="yes"
+  fi
+
   if listcontains "${GRAPHIC_DRIVERS}" "panfrost"; then
     GALLIUM_DRIVERS+=" kmsro panfrost"
     VULKAN_DRIVERS_MESA+=" panfrost"

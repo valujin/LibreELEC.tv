@@ -10,7 +10,13 @@
   TARGET_KERNEL_ARCH="x86"
 
 # setup ARCH specific *FLAGS
-  TARGET_CFLAGS="-march=${TARGET_CPU}"
+  TARGET_CFLAGS="-march=${TARGET_CPU} -mtune=${TARGET_CPU}"
+  if [ "${TARGET_CPU}" = "westmere" ]; then
+    # i3 370M cache params
+    # export TARGET_CFLAGS_CACHEP=" --param l1-cache-size=32 --param l1-cache-line-size=64 --param l2-cache-size=3072"
+    # i3 370M instructions
+    TARGET_CFLAGS+="${TARGET_CFLAGS_CACHEP} -mtune=${TARGET_CPU} -mmmx -mpopcnt -msse -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -mno-avx -mno-avx2 -mno-sse4a -mno-fma4 -mno-xop -mno-fma -mno-avx512f -mno-bmi -mno-bmi2 -mno-aes -mno-pclmul -mno-avx512vl -mno-avx512bw -mno-avx512dq -mno-avx512cd -mno-avx512er -mno-avx512pf -mno-avx512vbmi -mno-avx512ifma -mno-avx5124vnniw -mno-avx5124fmaps -mno-avx512vpopcntdq -mno-avx512vbmi2 -mno-gfni -mno-vpclmulqdq -mno-avx512vnni -mno-avx512bitalg -mno-avx512bf16 -mno-avx512vp2intersect -mno-3dnow -mno-adx -mno-abm -mno-cldemote -mno-clflushopt -mno-clwb -mno-clzero -mcx16 -mno-enqcmd -mno-f16c -mno-fsgsbase -mfxsr -mno-hle -msahf -mno-lwp -mno-lzcnt -mno-movbe -mno-movdir64b -mno-movdiri -mno-mwaitx -mno-pconfig -mno-pku -mno-prefetchwt1 -mno-prfchw -mno-ptwrite -mno-rdpid -mno-rdrnd -mno-rdseed -mno-rtm -mno-serialize -mno-sgx -mno-sha -mno-shstk -mno-tbm -mno-tsxldtrk -mno-vaes -mno-waitpkg -mno-wbnoinvd -mno-xsave -mno-xsavec -mno-xsaveopt -mno-xsaves -mno-amx-tile -mno-amx-int8 -mno-amx-bf16 -mno-uintr -mno-hreset -mno-kl -mno-widekl -mno-avxvnni"
+  fi
   TARGET_LDFLAGS=""
 
 # build with microarchitecture feature support defined by the TARGET_CPU value
@@ -18,10 +24,13 @@
   TARGET_FEATURES="64bit cmov cx8 fpu fxsr mmx osfxsr sce sse sse2"
   TARGET_FEATURES_X86_64_V2="cmpxchg16b lahf-sahf popcnt sse3 sse4_1 sse4_2 ssse3"
   TARGET_FEATURES_X86_64_V3="avx avx2 bmi1 bmi2 f16c fma lzcnt movbe osxsave"
+  TARGET_FEATURES_SANDYBRIDGE="avx osxsave"
   if [ "${TARGET_CPU}" = "x86-64" ]; then
     TARGET_FEATURES+=" no_sahf"
-  elif [ "${TARGET_CPU}" = "x86-64-v2" ]; then
+  elif [ "${TARGET_CPU}" = "x86-64-v2" ] || [ "${TARGET_CPU}" = "westmere" ]; then
     TARGET_FEATURES+=" ${TARGET_FEATURES_X86_64_V2}"
+  elif [ "${TARGET_CPU}" = "sandybridge" ]; then
+    TARGET_FEATURES+=" ${TARGET_FEATURES_X86_64_V2} ${TARGET_FEATURES_SANDYBRIDGE}"
   elif [ "${TARGET_CPU}" = "x86-64-v3" ]; then
     TARGET_FEATURES+=" ${TARGET_FEATURES_X86_64_V2} ${TARGET_FEATURES_X86_64_V3}"
   else

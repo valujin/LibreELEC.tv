@@ -13,8 +13,7 @@ PKG_LONGDESC="The userspace interface library to kernel DRM services."
 
 get_graphicdrivers
 
-PKG_MESON_OPTS_TARGET="-Dnouveau=disabled \
-                       -Domap=disabled \
+PKG_MESON_OPTS_TARGET="-Domap=disabled \
                        -Dexynos=disabled \
                        -Dtegra=disabled \
                        -Dcairo-tests=disabled \
@@ -32,6 +31,9 @@ listcontains "${GRAPHIC_DRIVERS}" "(r300|r600|radeonsi)" &&
 
 listcontains "${GRAPHIC_DRIVERS}" "radeonsi" &&
   PKG_MESON_OPTS_TARGET+=" -Damdgpu=enabled" || PKG_MESON_OPTS_TARGET+=" -Damdgpu=disabled"
+
+listcontains "${GRAPHIC_DRIVERS}" "nouveau" &&
+  PKG_MESON_OPTS_TARGET+=" -Dnouveau=enabled" || PKG_MESON_OPTS_TARGET+=" -Dnouveau=disabled"
 
 listcontains "${GRAPHIC_DRIVERS}" "vmware" &&
   PKG_MESON_OPTS_TARGET+=" -Dvmwgfx=enabled" || PKG_MESON_OPTS_TARGET+=" -Dvmwgfx=disabled"
