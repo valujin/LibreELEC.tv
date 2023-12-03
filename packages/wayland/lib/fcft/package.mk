@@ -3,7 +3,7 @@
 
 PKG_NAME="fcft"
 PKG_VERSION="3.1.6"
-PKG_SHA256="95797f945faf407cb658efe6e5dcf0cc3ab08ef01e159383f9cf7cf5ee257506"
+PKG_SHA256="904f40d749d198d97c46c5a459cd3c53fe92f008cf1e3e61949f6cf3036a78b7"
 PKG_LICENSE="MIT"
 PKG_SITE="https://codeberg.org/dnkl/fcft"
 PKG_URL="https://codeberg.org/dnkl/fcft/archive/${PKG_VERSION}.tar.gz"
