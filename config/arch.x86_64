@@ -10,7 +10,7 @@
   TARGET_KERNEL_ARCH="x86"
 
 # setup ARCH specific *FLAGS
-  TARGET_CFLAGS="-march=${TARGET_CPU} -mtune=${TARGET_CPU}"
+  TARGET_CFLAGS="-march=${TARGET_CPU}"
   if [ "${TARGET_CPU}" = "westmere" ]; then
     # i3 370M cache params
     # export TARGET_CFLAGS_CACHEP=" --param l1-cache-size=32 --param l1-cache-line-size=64 --param l2-cache-size=3072"
