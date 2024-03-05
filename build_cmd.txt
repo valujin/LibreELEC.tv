@@ -1,0 +1,1 @@
+PROJECT=Generic DEVICE=Generic ARCH=x86_64 BUILDER_NAME=valuxin MTPROGRESS=yes make image
