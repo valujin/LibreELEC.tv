@@ -5,7 +5,7 @@
 PKG_NAME="mpd"
 PKG_VERSION="0.23.15"
 PKG_SHA256="550132239ad1acf82ccf8905b56cc13dc2c81a4489b96fba7731b3049907661a"
-PKG_REV="1"
+PKG_REV="0"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://www.musicpd.org"
@@ -102,7 +102,7 @@ addon() {
   # copy mpd cli binary
   cp -P $(get_install_dir mpd-mpc)/usr/bin/mpc ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
 
-  patchelf --add-rpath '$ORIGIN/../lib.private' ${ADDON_BUILD}/${PKG_ADDON_ID}/bin/{mpc,mpd}
+  patchelf --add-rpath '${ORIGIN}/../lib.private' ${ADDON_BUILD}/${PKG_ADDON_ID}/bin/{mpc,mpd}
 
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/lib.private
   cp -p $(get_install_dir libmpdclient)/usr/lib/libmpdclient.so ${ADDON_BUILD}/${PKG_ADDON_ID}/lib.private

@@ -5,7 +5,7 @@
 
 PKG_NAME="vdr-addon"
 PKG_VERSION="2.6.7"
-PKG_REV="1"
+PKG_REV="0"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://libreelec.tv"
@@ -53,7 +53,7 @@ addon() {
               vnsiserver wirbelscan wirbelscancontrol xmltv2vdr; do
     cp -PR $(get_build_dir vdr-plugin-${pkg})/libvdr*.so.* ${ADDON_BUILD}/${PKG_ADDON_ID}/plugin
   done
-  patchelf --add-rpath '$ORIGIN/../lib.private' ${ADDON_BUILD}/${PKG_ADDON_ID}/plugin/libvdr-live.so.*
+  patchelf --add-rpath '${ORIGIN}/../lib.private' ${ADDON_BUILD}/${PKG_ADDON_ID}/plugin/libvdr-live.so.*
 
   # copy locale (omit ddci, dummydevice, robotv)
   for pkg in dvbapi eepg epgfixer epgsearch iptv live restfulapi satip vnsiserver wirbelscan \

@@ -4,7 +4,7 @@
 PKG_NAME="flirc_util"
 PKG_VERSION="653f706554b7dfa16c4b00859cfcccad8c5e02eb"
 PKG_SHA256="56c07170ede7fac1644b21af994b6e20fdbad37c9bc042d9a9d7906493d6bdbf"
-PKG_REV="1"
+PKG_REV="0"
 PKG_LICENSE="FLIRC"
 PKG_SITE="http://www.flirc.tv"
 PKG_URL="https://github.com/flirc/sdk/archive/${PKG_VERSION}.tar.gz"
@@ -33,6 +33,6 @@ make_target() {
 addon() {
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/{bin,lib.private}
     cp -P ${PKG_BUILD}/build/flirc_util ${ADDON_BUILD}/${PKG_ADDON_ID}/bin/
-    patchelf --add-rpath '$ORIGIN/../lib.private' ${ADDON_BUILD}/${PKG_ADDON_ID}/bin/flirc_util
+    patchelf --add-rpath '${ORIGIN}/../lib.private' ${ADDON_BUILD}/${PKG_ADDON_ID}/bin/flirc_util
     cp -P $(get_install_dir hidapi)/usr/lib/libhidapi-hidraw.so* ${ADDON_BUILD}/${PKG_ADDON_ID}/lib.private
 }
