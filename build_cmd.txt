@@ -1,1 +1,3 @@
 PROJECT=Generic DEVICE=Generic ARCH=x86_64 BUILDER_NAME=valuxin MTPROGRESS=yes make image
+
+time docker run --rm --log-driver none -v `pwd`:/build -w /build -it -e PROJECT=Generic -e DEVICE=Generic -e ARCH=x86_64 -e BUILDER_NAME=valuxin -e MTPROGRESS=yes -e THREADCOUNT=16 libreelec make image
