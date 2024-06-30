@@ -3,11 +3,12 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="mesa"
-PKG_VERSION="24.0.7"
-PKG_SHA256="7454425f1ed4a6f1b5b107e1672b30c88b22ea0efea000ae2c7d96db93f6c26a"
+PKG_VERSION="24.1.2"
+PKG_SHA256="a2c584c8d57d3bd8ba11790a6e9ae3713f8821df96c059b78afb29dd975c9f45"
 PKG_LICENSE="OSS"
 PKG_SITE="http://www.mesa3d.org/"
 PKG_URL="https://mesa.freedesktop.org/archive/mesa-${PKG_VERSION}.tar.xz"
+PKG_DEPENDS_HOST="toolchain:host expat:host libclc:host libdrm:host Mako:host spirv-tools:host"
 PKG_DEPENDS_TARGET="toolchain expat libdrm Mako:host"
 PKG_LONGDESC="Mesa is a 3-D graphics library with an API."
 
@@ -17,13 +18,23 @@ if [ "${DEVICE}" = "Dragonboard" ]; then
   PKG_DEPENDS_TARGET+=" libarchive libxml2 lua54"
 fi
 
+PKG_MESON_OPTS_HOST="-Dglvnd=disabled \
+                     -Dgallium-drivers=iris \
+                     -Dgallium-vdpau=disabled \
+                     -Dplatforms= \
+                     -Ddri3=disabled \
+                     -Dglx=disabled \
+                     -Dvulkan-drivers="
+
 PKG_MESON_OPTS_TARGET="-Dgallium-drivers=${GALLIUM_DRIVERS// /,} \
                        -Dgallium-extra-hud=false \
+                       -Dgallium-rusticl=false \
                        -Dgallium-omx=disabled \
                        -Dgallium-nine=false \
                        -Dgallium-opencl=disabled \
                        -Dshader-cache=enabled \
                        -Dshared-glapi=enabled \
+                       -Dopencl-spirv=false \
                        -Dopengl=true \
                        -Dgbm=enabled \
                        -Degl=enabled \
@@ -32,6 +43,7 @@ PKG_MESON_OPTS_TARGET="-Dgallium-drivers=${GALLIUM_DRIVERS// /,} \
                        -Dlmsensors=disabled \
                        -Dbuild-tests=false \
                        -Ddraw-use-llvm=false \
+                       -Dmicrosoft-clc=disabled \
                        -Dselinux=false \
                        -Dosmesa=false"
 
@@ -52,11 +64,20 @@ else
                            -Dglx=disabled"
 fi
 
+if listcontains "${GRAPHIC_DRIVERS}" "etnaviv"; then
+  PKG_DEPENDS_TARGET+=" pycparser:host"
+fi
+
+if listcontains "${GRAPHIC_DRIVERS}" "iris"; then
+  PKG_DEPENDS_TARGET+=" mesa:host"
+  PKG_MESON_OPTS_TARGET+=" -Dintel-clc=system"
+fi
+
 if listcontains "${GRAPHIC_DRIVERS}" "(nvidia|nvidia-ng)"; then
   PKG_DEPENDS_TARGET+=" libglvnd"
-  PKG_MESON_OPTS_TARGET+=" -Dglvnd=true"
+  PKG_MESON_OPTS_TARGET+=" -Dglvnd=enabled"
 else
-  PKG_MESON_OPTS_TARGET+=" -Dglvnd=false"
+  PKG_MESON_OPTS_TARGET+=" -Dglvnd=disabled"
 fi
 
 if [ "${LLVM_SUPPORT}" = "yes" ]; then
@@ -99,3 +120,8 @@ if [ "${VULKAN_SUPPORT}" = "yes" ]; then
 else
   PKG_MESON_OPTS_TARGET+=" -Dvulkan-drivers="
 fi
+
+makeinstall_host() {
+  mkdir -p "${TOOLCHAIN}/bin"
+    cp -a src/intel/compiler/intel_clc "${TOOLCHAIN}/bin"
+}
