@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="qemu"
-PKG_VERSION="8.0.5"
-PKG_SHA256="91d3024d51e441c235dcb1b0c87cb3aab302283166e8d3d5f8282aa06c346be1"
+PKG_VERSION="9.1.0"
+PKG_SHA256="816b7022a8ba7c2ac30e2e0cf973e826f6bcc8505339603212c5ede8e94d7834"
 PKG_LICENSE="GPL"
 PKG_SITE="https://www.qemu.org"
 PKG_URL="https://download.qemu.org/qemu-${PKG_VERSION}.tar.xz"
@@ -40,6 +40,8 @@ pre_configure_host() {
     --disable-werror \
     --disable-xkbcommon \
     --disable-zstd"
+
+  export DONT_BUILD_LEGACY_PYC=1
 }
 
 makeinstall_host() {
