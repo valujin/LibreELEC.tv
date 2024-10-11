@@ -24,7 +24,7 @@ case $1 in
 esac
 
 # Define the maximum number of parallel downloads
-MAX_PARALLEL_DOWNLOADS=20
+MAX_PARALLEL_DOWNLOADS=5
 
 find packages/ -name package.mk | while read package; do
   if [ -n "$(echo $package | grep addons)" -a -z "$ALL_PACKAGES" ]; then
