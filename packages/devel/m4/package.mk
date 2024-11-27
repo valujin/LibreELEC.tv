@@ -6,11 +6,7 @@ PKG_VERSION="1.4.19"
 PKG_SHA256="b306a91c0fd93bc4280cfc2e98cb7ab3981ff75a187bea3293811f452c89a8c8"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.gnu.org/software/m4/"
-<<<<<<< HEAD
-PKG_URL="http://ftp.gnu.org/gnu/m4/${PKG_NAME}-${PKG_VERSION}.tar.bz2"
-=======
 PKG_URL="https://ftpmirror.gnu.org/m4/${PKG_NAME}-${PKG_VERSION}.tar.bz2"
->>>>>>> 41acc8a25a9ea597254a3124bb678b5426bd4744
 PKG_DEPENDS_HOST="ccache:host"
 PKG_LONGDESC="The m4 macro processor."
 PKG_BUILD_FLAGS="-cfg-libs:host"

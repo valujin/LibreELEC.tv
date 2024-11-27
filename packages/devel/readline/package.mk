@@ -7,11 +7,7 @@ PKG_VERSION="8.2"
 PKG_SHA256="3feb7171f16a84ee82ca18a36d7b9be109a52c04f492a053331d7d1095007c35"
 PKG_LICENSE="MIT"
 PKG_SITE="http://www.gnu.org/software/readline/"
-<<<<<<< HEAD
-PKG_URL="http://ftp.gnu.org/gnu/readline/${PKG_NAME}-${PKG_VERSION}.tar.gz"
-=======
 PKG_URL="https://ftpmirror.gnu.org/readline/${PKG_NAME}-${PKG_VERSION}.tar.gz"
->>>>>>> 41acc8a25a9ea597254a3124bb678b5426bd4744
 PKG_DEPENDS_TARGET="autotools:host gcc:host ncurses"
 PKG_LONGDESC="The GNU Readline library provides a set of functions for use by applications that allow users to edit command lines as they are typed in."
 PKG_BUILD_FLAGS="+pic"

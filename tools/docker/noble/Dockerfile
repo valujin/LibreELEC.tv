@@ -15,6 +15,8 @@ ENV LANG=en_US.UTF-8 \
 RUN useradd docker -U -G sudo -m -s /bin/bash \
  && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
+RUN usermod -o -u 1000 docker
+
 RUN apt-get update
 
 RUN apt-get install -y \

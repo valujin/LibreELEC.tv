@@ -7,11 +7,7 @@ PKG_VERSION="2024.10.16"
 PKG_SHA256="7bcd5d001916f3a50ed7436f4f700e3d2b1bade3ed803219c592d62502a57363"
 PKG_LICENSE="GPL"
 PKG_SITE="https://www.gnu.org/software/autoconf-archive/"
-<<<<<<< HEAD
-PKG_URL="http://ftp.gnu.org/gnu/autoconf-archive/${PKG_NAME}-${PKG_VERSION}.tar.xz"
-=======
 PKG_URL="https://ftpmirror.gnu.org/autoconf-archive/${PKG_NAME}-${PKG_VERSION}.tar.xz"
->>>>>>> 41acc8a25a9ea597254a3124bb678b5426bd4744
 PKG_DEPENDS_HOST="ccache:host"
 PKG_LONGDESC="autoconf-archive is an package of m4 macros"
 PKG_BUILD_FLAGS="-cfg-libs:host"
