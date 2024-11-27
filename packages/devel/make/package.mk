@@ -7,7 +7,11 @@ PKG_VERSION="4.4.1"
 PKG_SHA256="dd16fb1d67bfab79a72f5e8390735c49e3e8e70b4945a15ab1f81ddb78658fb3"
 PKG_LICENSE="GPLv3"
 PKG_SITE="https://www.gnu.org/software/make/"
+<<<<<<< HEAD
 PKG_URL="http://ftp.gnu.org/gnu/make/${PKG_NAME}-${PKG_VERSION}.tar.gz"
+=======
+PKG_URL="https://ftpmirror.gnu.org/make/${PKG_NAME}-${PKG_VERSION}.tar.gz"
+>>>>>>> 41acc8a25a9ea597254a3124bb678b5426bd4744
 PKG_DEPENDS_HOST=""
 PKG_LONGDESC="Utility to maintain groups of programs."
 PKG_BUILD_FLAGS="+local-cc -cfg-libs:host"
