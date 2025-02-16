@@ -1,0 +1,29 @@
+From 01ed9dc93ce22b476eec338365dc757638f9e66c Mon Sep 17 00:00:00 2001
+From: Jernej Skrabec <jernej.skrabec@gmail.com>
+Date: Fri, 16 Feb 2024 20:18:06 +0100
+Subject: [PATCH 5/6] arm64: dts: allwinner: h618: orangepi-zero2w: Enable GPU
+
+Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+---
+ .../arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
+index 21ca1977055d..aa814f27304a 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
+@@ -59,6 +59,11 @@ &ehci1 {
+ 
+ /* USB 2 & 3 are on the FPC connector (or the exansion board) */
+ 
++&gpu {
++	mali-supply = <&reg_dcdc1>;
++	status = "okay";
++};
++
+ &mmc0 {
+ 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
+ 	bus-width = <4>;
+-- 
+2.43.2
+

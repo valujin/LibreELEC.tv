@@ -1,0 +1,29 @@
+From 8c78ce0d492393a50008de75dc54370678fc01be Mon Sep 17 00:00:00 2001
+From: Jernej Skrabec <jernej.skrabec@gmail.com>
+Date: Fri, 16 Feb 2024 20:09:03 +0100
+Subject: [PATCH 2/6] arm64: dts: allwinner: h618: orangepi-zero3: Enable GPU
+
+Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+---
+ arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
+index b3b1b8692125..c5c0e43eda2c 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
+@@ -22,6 +22,11 @@ &ext_rgmii_phy {
+ 	motorcomm,clk-out-frequency-hz = <125000000>;
+ };
+ 
++&gpu {
++	mali-supply = <&reg_dcdc1>;
++	status = "okay";
++};
++
+ &mmc0 {
+ 	/*
+ 	 * The schematic shows the card detect pin wired up to PF6, via an
+-- 
+2.43.2
+
