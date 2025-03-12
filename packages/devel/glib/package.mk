@@ -3,8 +3,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="glib"
-PKG_VERSION="2.83.3"
-PKG_SHA256="d0c65318bb2e3fa594277cf98a71cffaf5f666c078db39dcec121757b2ba328d"
+PKG_VERSION="2.84.0"
+PKG_SHA256="f8823600cb85425e2815cfad82ea20fdaa538482ab74e7293d58b3f64a5aff6a"
 PKG_LICENSE="LGPL"
 PKG_SITE="https://www.gtk.org/"
 PKG_URL="https://download.gnome.org/sources/glib/$(get_pkg_version_maj_min)/${PKG_NAME}-${PKG_VERSION}.tar.xz"
@@ -15,6 +15,7 @@ PKG_LONGDESC="A library which includes support routines for C such as lists, tre
 PKG_MESON_OPTS_HOST="-Ddefault_library=static \
                      -Dinstalled_tests=false \
                      -Dlibmount=disabled \
+                     -Dintrospection=disabled \
                      -Dtests=false"
 
 PKG_MESON_OPTS_TARGET="-Ddefault_library=shared \
