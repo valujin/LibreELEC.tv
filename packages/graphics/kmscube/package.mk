@@ -3,7 +3,7 @@
 
 PKG_NAME="kmscube"
 PKG_VERSION="9f63f359fab1b5d8e862508e4e51c9dfe339ccb0"
-PKG_SHA256="77054d31ff0bcb356000e7ba576c638faf4f39ce9325a0c6c0f241bc48cf56f3"
+PKG_SHA256="ae07899cd9cfbdff37f28a49de3d1f2e463534073004c4915ce404923eb2d0c1"
 PKG_LICENSE="GPL"
 PKG_SITE="https://gitlab.freedesktop.org/mesa/kmscube"
 PKG_URL="https://gitlab.freedesktop.org/mesa/kmscube/-/archive/master/kmscube-${PKG_VERSION}.tar.gz"
