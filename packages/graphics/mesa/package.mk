@@ -3,8 +3,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="mesa"
-PKG_VERSION="25.0.2"
-PKG_SHA256="adf904d083b308df95898600ffed435f4b5c600d95fb6ec6d4c45638627fdc97"
+PKG_VERSION="25.0.3"
+PKG_SHA256="5ff426ed6ce0588fd96d18975bdff451ae2ab2fe98b5d1528842ee71ec66711b"
 PKG_LICENSE="OSS"
 PKG_SITE="http://www.mesa3d.org/"
 PKG_URL="https://mesa.freedesktop.org/archive/mesa-${PKG_VERSION}.tar.xz"
@@ -66,7 +66,9 @@ if listcontains "${GRAPHIC_DRIVERS}" "iris"; then
   PKG_MESON_OPTS_TARGET+=" -Dmesa-clc=system"
 fi
 
-if listcontains "${GRAPHIC_DRIVERS}" "(nvidia|nvidia-ng)"; then
+if listcontains "${GRAPHIC_DRIVERS}" "(nvidia|nvidia-ng)" ||
+              [ "${OPENGL_SUPPORT}" = "yes" ] &&
+              [ "${DISPLAYSERVER}" != "x11" ]; then
   PKG_DEPENDS_TARGET+=" libglvnd"
   PKG_MESON_OPTS_TARGET+=" -Dglvnd=enabled"
 else
@@ -90,7 +92,7 @@ fi
 if [ "${VAAPI_SUPPORT}" = "yes" ] && listcontains "${GRAPHIC_DRIVERS}" "(r600|radeonsi)"; then
   PKG_DEPENDS_TARGET+=" libva"
   PKG_MESON_OPTS_TARGET+=" -Dgallium-va=enabled \
-                           -Dvideo-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc"
+                           -Dvideo-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc,av1dec,av1enc,vp9dec"
 else
   PKG_MESON_OPTS_TARGET+=" -Dgallium-va=disabled"
 fi
