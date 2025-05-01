@@ -3,12 +3,12 @@
 # Copyright (C) 2017-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="kodi"
-PKG_VERSION="230e3b401749690aeedfe2471bbbe876cc53fff2"
-PKG_SHA256="be7938f19629f1c9596b7d2ec3596e07666fb7c535bedb8d8f1d71f2509352eb"
+PKG_VERSION="c55eee6017203fdcedfa8411b5b40ae0b0c7e3e4"
+PKG_SHA256="f5f80e3997c4250f6690f4f6793b214c75157c99a71ea0aeeb477722031c93d6"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kodi.tv"
 PKG_URL="https://github.com/xbmc/xbmc/archive/${PKG_VERSION}.tar.gz"
-PKG_DEPENDS_TARGET="toolchain JsonSchemaBuilder:host TexturePacker:host Python3 zlib systemd lzo pcre2 swig:host libass curl exiv2 fontconfig fribidi tinyxml tinyxml2 libjpeg-turbo freetype libcdio taglib libxml2 libxslt rapidjson sqlite ffmpeg crossguid libdvdnav libfmt lirc libfstrcmp flatbuffers:host flatbuffers libudfread spdlog libxkbcommon"
+PKG_DEPENDS_TARGET="toolchain JsonSchemaBuilder:host TexturePacker:host Python3 zlib systemd lzo pcre2 swig:host libass curl exiv2 fontconfig fribidi tinyxml tinyxml2 libjpeg-turbo freetype libcdio taglib libxml2 libxslt nlohmann-json sqlite ffmpeg crossguid libdvdnav libfmt lirc libfstrcmp flatbuffers:host flatbuffers libudfread spdlog libxkbcommon"
 PKG_DEPENDS_UNPACK="commons-lang3 commons-text groovy"
 PKG_DEPENDS_HOST="toolchain"
 PKG_LONGDESC="A free and open source cross-platform media player."
@@ -254,9 +254,7 @@ configure_package() {
                          -DENABLE_INTERNAL_EXIV2=OFF \
                          -DENABLE_INTERNAL_FFMPEG=OFF \
                          -DENABLE_INTERNAL_FLATBUFFERS=OFF \
-                         -DENABLE_INTERNAL_RapidJSON=OFF \
                          -DENABLE_INTERNAL_SPDLOG=OFF \
-                         -DENABLE_INTERNAL_UDFREAD=OFF \
                          -DENABLE_UDEV=ON \
                          -DENABLE_DBUS=ON \
                          -DENABLE_XSLT=ON \
