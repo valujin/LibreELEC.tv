@@ -1,7 +1,7 @@
-From 3eca81d6c8551f3f4ed83e6943ccc86fe1b0130e Mon Sep 17 00:00:00 2001
+From a47d29eae229e62c4bf6f6d694d62ab7ccf4d2fe Mon Sep 17 00:00:00 2001
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Date: Sat, 29 Mar 2025 19:58:51 +0100
-Subject: [PATCH 11/51] FROMGIT(6.16): arm64: dts: amlogic: gxbb: enable UART
+Subject: [PATCH 11/50] FROMGIT(6.16): arm64: dts: amlogic: gxbb: enable UART
  RX and TX pull up by default
 
 Some boards have noise on the UART RX line when the UART pins are not
@@ -17,7 +17,7 @@ Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index ed00e67e6923..e45f629bd71a 100644
+index 6c134592c7bb..f69923da07fe 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
 @@ -105,7 +105,7 @@ uart_ao_a_pins: uart_ao_a {

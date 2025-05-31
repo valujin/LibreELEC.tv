@@ -1,7 +1,7 @@
-From df3e619072dae02707312b265d64f82ac9adc7b2 Mon Sep 17 00:00:00 2001
+From 967bd7dbbb6ae6392aec7c41d3243c7d635cf6d1 Mon Sep 17 00:00:00 2001
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Date: Sat, 29 Mar 2025 20:07:12 +0100
-Subject: [PATCH 20/51] FROMLIST(v2): phy: amlogic: meson8b-usb2: Use the
+Subject: [PATCH 20/50] FROMLIST(v2): phy: amlogic: meson8b-usb2: Use the
  regmap_{clear,set}_bits helpers
 
 These require less code, reduce the chance of typos and overall make the

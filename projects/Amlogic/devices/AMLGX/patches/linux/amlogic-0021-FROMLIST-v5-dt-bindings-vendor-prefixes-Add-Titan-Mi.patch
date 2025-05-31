@@ -1,7 +1,7 @@
-From 6d3b1774ee807a5240f72d2c87febe0c65c317ad Mon Sep 17 00:00:00 2001
+From 69c265006b7fbb60bc841e71d335d5362007f193 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
 Date: Sun, 20 Feb 2022 08:23:12 +0000
-Subject: [PATCH 21/51] FROMLIST(v5): dt-bindings: vendor-prefixes: Add Titan
+Subject: [PATCH 21/50] FROMLIST(v5): dt-bindings: vendor-prefixes: Add Titan
  Micro Electronics
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -17,10 +17,10 @@ Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index b5979832ddce..0b1df976f17e 100644
+index 86f6a19b28ae..8af0a6426729 100644
 --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
 +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1526,6 +1526,8 @@ patternProperties:
+@@ -1534,6 +1534,8 @@ patternProperties:
      description: Texas Instruments
    "^tianma,.*":
      description: Tianma Micro-electronics Co., Ltd.

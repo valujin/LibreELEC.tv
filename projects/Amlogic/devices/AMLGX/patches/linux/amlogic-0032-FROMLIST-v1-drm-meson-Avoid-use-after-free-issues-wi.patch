@@ -1,7 +1,7 @@
-From feee6a25cfea5f02068b1d8b8aaa1f8a912c5640 Mon Sep 17 00:00:00 2001
+From 57246e21d3ecba5de0be1d95458812351d2cc7cd Mon Sep 17 00:00:00 2001
 From: Zhang Kunbo <zhangkunbo@huawei.com>
 Date: Wed, 6 Nov 2024 02:45:48 +0000
-Subject: [PATCH 32/51] FROMLIST(v1): drm/meson: Avoid use-after-free issues
+Subject: [PATCH 32/50] FROMLIST(v1): drm/meson: Avoid use-after-free issues
  with crtc
 
 It's dangerous to call drm_crtc_init_with_planes() whose second

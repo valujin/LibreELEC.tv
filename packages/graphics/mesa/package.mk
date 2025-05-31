@@ -3,8 +3,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="mesa"
-PKG_VERSION="25.0.5"
-PKG_SHA256="c0d245dea0aa4b49f74b3d474b16542e4a8799791cd33d676c69f650ad4378d0"
+PKG_VERSION="25.1.1"
+PKG_SHA256="cf942a18b7b9e9b88524dcbf0b31fed3cde18e6d52b3375b0ab6587a14415bce"
 PKG_LICENSE="OSS"
 PKG_SITE="http://www.mesa3d.org/"
 PKG_URL="https://mesa.freedesktop.org/archive/mesa-${PKG_VERSION}.tar.xz"
@@ -23,7 +23,9 @@ PKG_MESON_OPTS_HOST="-Dglvnd=disabled \
                      -Dgallium-vdpau=disabled \
                      -Dplatforms= \
                      -Dglx=disabled \
-                     -Dvulkan-drivers="
+                     -Dvulkan-drivers= \
+                     -Dshared-llvm=disabled \
+                     -Dtools=panfrost"
 
 PKG_MESON_OPTS_TARGET="-Dgallium-drivers=${GALLIUM_DRIVERS// /,} \
                        -Dgallium-extra-hud=false \
@@ -61,14 +63,17 @@ if listcontains "${GRAPHIC_DRIVERS}" "etnaviv"; then
   PKG_DEPENDS_TARGET+=" pycparser:host"
 fi
 
-if listcontains "${GRAPHIC_DRIVERS}" "iris"; then
-  PKG_DEPENDS_TARGET+=" mesa:host"
-  PKG_MESON_OPTS_TARGET+=" -Dmesa-clc=system"
+if listcontains "${GRAPHIC_DRIVERS}" "(iris|panfrost)"; then
+  if [ "${USE_REUSABLE}" = "yes" ]; then
+    PKG_DEPENDS_TARGET+=" mesa-reusable"
+  else
+    PKG_DEPENDS_TARGET+=" mesa:host"
+  fi
+  PKG_MESON_OPTS_TARGET+=" -Dmesa-clc=system -Dprecomp-compiler=system"
 fi
 
 if listcontains "${GRAPHIC_DRIVERS}" "(nvidia|nvidia-ng)" ||
-              [ "${OPENGL_SUPPORT}" = "yes" ] &&
-              [ "${DISPLAYSERVER}" != "x11" ]; then
+              [ "${OPENGL_SUPPORT}" = "yes" -a "${DISPLAYSERVER}" != "x11" ]; then
   PKG_DEPENDS_TARGET+=" libglvnd"
   PKG_MESON_OPTS_TARGET+=" -Dglvnd=enabled"
 else
@@ -117,7 +122,31 @@ else
 fi
 
 makeinstall_host() {
+  host_files="src/compiler/clc/mesa_clc src/compiler/spirv/vtn_bindgen2 src/panfrost/clc/panfrost_compile"
+
+  if listcontains "${BUILD_REUSABLE}" "(all|mesa:host)"; then
+    # Build the reusable mesa:host for both local and to be added to a GitHub release
+    strip ${host_files}
+    upx --lzma ${host_files}
+
+    REUSABLE_SOURCES="${SOURCES}/mesa-reusable"
+    MESA_HOST="mesa-reusable-${OS_VERSION}-${PKG_VERSION}"
+    REUSABLE_SOURCE_NAME=${MESA_HOST}-${MACHINE_HARDWARE_NAME}.tar
+
+    mkdir -p "${TARGET_IMG}"
+
+    tar cf ${TARGET_IMG}/${REUSABLE_SOURCE_NAME} --transform='s|.*/||' ${host_files}
+    sha256sum ${TARGET_IMG}/${REUSABLE_SOURCE_NAME} | \
+      cut -d" " -f1 >${TARGET_IMG}/${REUSABLE_SOURCE_NAME}.sha256
+
+    if listcontains "${BUILD_REUSABLE}" "save-local"; then
+      mkdir -p "${REUSABLE_SOURCES}"
+      cp -p ${TARGET_IMG}/${REUSABLE_SOURCE_NAME} ${REUSABLE_SOURCES}
+      cp -p ${TARGET_IMG}/${REUSABLE_SOURCE_NAME}.sha256 ${REUSABLE_SOURCES}
+      echo "save-local" >${REUSABLE_SOURCES}/${REUSABLE_SOURCE_NAME}.url
+    fi
+  fi
+
   mkdir -p "${TOOLCHAIN}/bin"
-    cp -a src/compiler/clc/mesa_clc "${TOOLCHAIN}/bin"
-    cp -a src/compiler/spirv/vtn_bindgen "${TOOLCHAIN}/bin"
+    cp -a ${host_files} "${TOOLCHAIN}/bin"
 }

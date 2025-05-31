@@ -1,7 +1,7 @@
-From 4914cd2636248ed0b02b2ca746c4b4d7a203f74c Mon Sep 17 00:00:00 2001
+From 9b45fa72a806226bd18fad472721203cc5b533c5 Mon Sep 17 00:00:00 2001
 From: Maxime Jourdan <mjourdan@baylibre.com>
 Date: Mon, 23 Jan 2023 11:07:04 +0000
-Subject: [PATCH 30/51] FROMLIST(v2): media: meson: vdec: add HEVC decode codec
+Subject: [PATCH 30/50] FROMLIST(v2): media: meson: vdec: add HEVC decode codec
 
 Add initial HEVC codec for the Amlogic GXBB/GXL/GXM SoCs using
 the common "HEVC" decoder driver.
